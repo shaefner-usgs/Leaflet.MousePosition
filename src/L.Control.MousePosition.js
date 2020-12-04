@@ -4,14 +4,18 @@ L.Control.MousePosition = L.Control.extend({
 
 	options: {
 		position: 'bottomleft',
-		separator: ' : ',
+		separator: ', ',
 		emptyString: 'Unavailable',
 		lngFirst: false,
-		numDigits: 5,
-		lngFormatter: undefined,
-		latFormatter: undefined,
+		numDigits: 3,
+		lngFormatter: function(n) {
+			return [Math.abs(n).toFixed(3), '&deg;', (n<0?'W':'E')].join('');
+		},
+		latFormatter: function(n) {
+			return [Math.abs(n).toFixed(3), '&deg;', (n<0?'S':'N')].join('');
+		},
 		formatter: undefined,
-		prefix: "",
+		prefix: '',
 		wrapLng: true,
 	},
 
